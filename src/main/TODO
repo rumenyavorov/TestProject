@@ -1,0 +1,5 @@
+-> Persons Object relation OneToMany to the created entity
+Create new entity address-city-firstN-lastN-phoneNumber-email
+Entity -> Service(interface) -> Service Implementation -> Middleware(Rest)
+generate strategy!!! sequence
+//TODO
