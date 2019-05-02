@@ -3,6 +3,7 @@ package tests.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tests.domain.Persons;
+import tests.domain.PersonsDetails;
 import tests.services.PersonsService;
 
 import javax.persistence.EntityManager;
@@ -48,5 +49,18 @@ public class PersonsServiceImpl implements PersonsService {
     @Transactional
     public void delete(Persons person) {
         em.remove(person);
+    }
+
+    @Override
+    @Transactional
+    public void merge(Persons person){
+        em.merge(person);
+    }
+
+    @Override
+    public List<PersonsDetails> getAllDetailsByPerson(Long id) {
+        Query q = em.createQuery("select p from PersonsDetails p where ");
+
+        return null;
     }
 }

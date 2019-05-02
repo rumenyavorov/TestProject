@@ -33,7 +33,7 @@ public class PersonsDetails {
     private String address;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "persons_id", nullable = false)
+    @JoinColumn(name = "persons_id")
     private Persons person;
 
     public Long getPersonDetailsId() {

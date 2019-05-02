@@ -12,6 +12,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,4 +58,36 @@ public class PersonsRest {
         }
         personsService.save(per);
     }
+
+    @POST
+    @Path("/updatePerson")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public Response updatePerson(PersonsDto personsDto) {
+        Persons per = personsService.getUserByid(personsDto.getId());
+
+        List<PersonsDetails> personsDetails = per.getPersonsDetailsList();
+//        for(int i = 0;i < personsDto.getPersonsDetailsDtos().size(); i++){
+            PersonsDetails personsDetail = personsDetails.get(2);
+            personsDetail.setAddress("jfhhdgfdfdgfgddgfdgfdgfdgfd");
+            personsDetails.add(personsDetail);
+//        }
+
+        per.setPersonsDetailsList(personsDetails);
+        personsService.merge(per);
+//        personsDto.setId(per.getPersonsId());
+//        personsDto.setName(per.getName());
+//        List<PersonsDetails> personsDetailsList = per.getPersonsDetailsList();
+//        List<PersonsDetailsDto> personsDetailsDtos = new ArrayList<>();
+//        for (PersonsDetails personsDetails : personsDetailsList) {
+//            PersonsDetailsDto personsDetailsDto = new PersonsDetailsDto();
+//            personsDetailsDto.setAddress(personsDetails.getAddress());
+//            personsDetailsDtos.add(personsDetailsDto);
+//        }
+//        personsDto.setPersonsDetailsDtos(personsDetailsDtos);
+//
+        return Response.ok().entity(personsDto).build();
+    }
+
+
 }
