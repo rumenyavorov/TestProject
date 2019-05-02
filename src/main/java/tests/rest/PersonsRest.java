@@ -3,6 +3,8 @@ package tests.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tests.domain.Persons;
+import tests.domain.PersonsDetails;
+import tests.dto.PersonsDetailsDto;
 import tests.dto.PersonsDto;
 import tests.services.PersonsService;
 
@@ -10,6 +12,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -44,8 +47,13 @@ public class PersonsRest {
     @Consumes("application/json")
     public void setPerson(PersonsDto personsDto) {
         Persons per = new Persons();
-        per.setId(personsDto.getId());
         per.setName(personsDto.getName());
+        List<PersonsDetails> details = new ArrayList<>();
+        for (PersonsDetailsDto detail : personsDto.getPersonsDetailsDtos()) {
+            PersonsDetails perD = new PersonsDetails();
+            perD.setAddress(detail.getAddress());
+            details.add(perD);
+        }
         personsService.save(per);
     }
 }

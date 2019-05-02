@@ -13,7 +13,7 @@ public class PersonsDetailsDto implements Serializable {
 
     private String lastName;
 
-    private List<String> address;
+    private String address;
 
     private String city;
 
@@ -45,11 +45,11 @@ public class PersonsDetailsDto implements Serializable {
         this.lastName = lastName;
     }
 
-    public List<String> getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(List<String> address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

@@ -2,24 +2,29 @@ package tests.domain;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "persons")
 public class Persons {
 
     @Id
-    private Long id;
+    @Column(name = "persons_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long personsId;
 
     @Column(name = "name")
     private String name;
 
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "persons")
+    private List<PersonsDetails> personsDetailsList;
 
-    public Long getId() {
-        return id;
+    public Long getPersonsId() {
+        return personsId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPersonsId(Long personsId) {
+        this.personsId = personsId;
     }
 
     public String getName() {
@@ -28,5 +33,13 @@ public class Persons {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<PersonsDetails> getPersonsDetailsList() {
+        return personsDetailsList;
+    }
+
+    public void setPersonsDetailsList(List<PersonsDetails> personsDetailsList) {
+        this.personsDetailsList = personsDetailsList;
     }
 }
