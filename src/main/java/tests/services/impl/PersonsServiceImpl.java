@@ -9,7 +9,9 @@ import tests.services.PersonsService;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -59,8 +61,20 @@ public class PersonsServiceImpl implements PersonsService {
 
     @Override
     public List<PersonsDetails> getAllDetailsByPerson(Long id) {
-        Query q = em.createQuery("select p from PersonsDetails p where ");
+        Query q = em.createNativeQuery("select pd.* from person_details as pd " +
+                " inner join persons as p on p.persons_id = pd.persons_id " +
+                " where p.persons_id = :id");
+        q.setParameter("id", id);
 
-        return null;
+        List<Object[]> result = q.getResultList();
+        List<PersonsDetails> personsDetails = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++) {
+            PersonsDetails details = new PersonsDetails();
+            details.setPersonDetailsId(((BigInteger)result.get(i)[0]).longValue());
+            details.setAddress((String) result.get(i)[1]);
+            personsDetails.add(details);
+        }
+
+        return personsDetails;
     }
 }

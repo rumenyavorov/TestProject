@@ -89,5 +89,13 @@ public class PersonsRest {
         return Response.ok().entity(personsDto).build();
     }
 
+    @POST
+    @Path("/getPersonDetails")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public Response getPersonDetails(Long id) {
+        List<PersonsDetails> details = personsService.getAllDetailsByPerson(id);
 
+        return Response.ok().entity(details).build();
+    }
 }

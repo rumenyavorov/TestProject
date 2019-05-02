@@ -99,4 +99,18 @@ public class PersonsDetails {
     public void setPerson(Persons person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "personDetailsId=" + personDetailsId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", person=" + person +
+                '}';
+    }
 }

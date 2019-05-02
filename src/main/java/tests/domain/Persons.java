@@ -43,4 +43,13 @@ public class Persons {
     public void setPersonsDetailsList(List<PersonsDetails> personsDetailsList) {
         this.personsDetailsList = personsDetailsList;
     }
+
+    @Override
+    public String toString() {
+        return "Persons{" +
+                "personsId=" + personsId +
+                ", name='" + name + '\'' +
+                ", personsDetailsList=" + personsDetailsList +
+                '}';
+    }
 }
