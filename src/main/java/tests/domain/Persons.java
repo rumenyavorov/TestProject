@@ -16,7 +16,8 @@ public class Persons {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "persons")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "persons_id")
     private List<PersonsDetails> personsDetailsList;
 
     public Long getPersonsId() {

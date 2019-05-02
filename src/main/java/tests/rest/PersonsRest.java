@@ -53,6 +53,7 @@ public class PersonsRest {
             PersonsDetails perD = new PersonsDetails();
             perD.setAddress(detail.getAddress());
             details.add(perD);
+            per.setPersonsDetailsList(details);
         }
         personsService.save(per);
     }

@@ -3,7 +3,6 @@ package tests.domain;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Entity
 @Table(name = "person_details")
@@ -33,9 +32,9 @@ public class PersonsDetails {
 
     private String address;
 
-    @ManyToOne
-    @JoinColumn(name = "persons_id")
-    private Persons persons;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "persons_id", nullable = false)
+    private Persons person;
 
     public Long getPersonDetailsId() {
         return personDetailsId;
@@ -93,11 +92,11 @@ public class PersonsDetails {
         this.address = address;
     }
 
-    public Persons getPersons() {
-        return persons;
+    public Persons getPerson() {
+        return person;
     }
 
-    public void setPersons(Persons persons) {
-        this.persons = persons;
+    public void setPerson(Persons person) {
+        this.person = person;
     }
 }

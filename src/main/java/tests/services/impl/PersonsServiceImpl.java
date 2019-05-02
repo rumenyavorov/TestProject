@@ -41,6 +41,7 @@ public class PersonsServiceImpl implements PersonsService {
     @Transactional
     public void save(Persons person) {
         em.persist(person);
+        em.flush();
     }
 
     @Override
