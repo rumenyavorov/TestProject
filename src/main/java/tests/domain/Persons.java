@@ -20,6 +20,10 @@ public class Persons {
     @JoinColumn(name = "persons_id")
     private List<PersonsDetails> personsDetailsList;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "persons_id")
+    private List<PersonsRoles> personsRolesList;
+
     public Long getPersonsId() {
         return personsId;
     }
@@ -42,6 +46,14 @@ public class Persons {
 
     public void setPersonsDetailsList(List<PersonsDetails> personsDetailsList) {
         this.personsDetailsList = personsDetailsList;
+    }
+
+    public List<PersonsRoles> getPersonsRolesList() {
+        return personsRolesList;
+    }
+
+    public void setPersonsRolesList(List<PersonsRoles> personsRolesList) {
+        this.personsRolesList = personsRolesList;
     }
 
     @Override

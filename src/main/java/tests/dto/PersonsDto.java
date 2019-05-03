@@ -8,10 +8,10 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonsDto implements Serializable {
 
-
     private Long id;
     private String name;
     private List<PersonsDetailsDto> personsDetailsDtos;
+    private List<PersonsRolesDto> personsRolesDtos;
 
     public Long getId() {
         return id;
@@ -35,5 +35,13 @@ public class PersonsDto implements Serializable {
 
     public void setPersonsDetailsDtos(List<PersonsDetailsDto> personsDetailsDtos) {
         this.personsDetailsDtos = personsDetailsDtos;
+    }
+
+    public List<PersonsRolesDto> getPersonsRolesDtos() {
+        return personsRolesDtos;
+    }
+
+    public void setPersonsRolesDtos(List<PersonsRolesDto> personsRolesDtos) {
+        this.personsRolesDtos = personsRolesDtos;
     }
 }

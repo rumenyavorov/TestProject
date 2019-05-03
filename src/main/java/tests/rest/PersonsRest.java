@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tests.domain.Persons;
 import tests.domain.PersonsDetails;
+import tests.domain.PersonsRoles;
+import tests.domain.Roles;
 import tests.dto.PersonsDetailsDto;
 import tests.dto.PersonsDto;
+import tests.dto.PersonsRolesDto;
 import tests.services.PersonsService;
 
 import javax.ws.rs.Consumes;
@@ -49,12 +52,28 @@ public class PersonsRest {
     public void setPerson(PersonsDto personsDto) {
         Persons per = new Persons();
         per.setName(personsDto.getName());
+
+        List<PersonsRoles> roles = new ArrayList<>();
         List<PersonsDetails> details = new ArrayList<>();
+
         for (PersonsDetailsDto detail : personsDto.getPersonsDetailsDtos()) {
             PersonsDetails perD = new PersonsDetails();
             perD.setAddress(detail.getAddress());
+            perD.setCity(detail.getCity());
+            perD.setEmail(detail.getEmail());
+            perD.setFirstName(detail.getFirstName());
+            perD.setLastName(detail.getLastName());
+            perD.setPhoneNumber(detail.getPhoneNumber());
+
             details.add(perD);
             per.setPersonsDetailsList(details);
+        }
+
+        for(PersonsRolesDto rolesDto : personsDto.getPersonsRolesDtos()){
+            PersonsRoles perR = new PersonsRoles();
+            perR.setPersonRoleId(rolesDto.getPersonRoleId());
+            roles.add(perR);
+            per.setPersonsRolesList(roles);
         }
         personsService.save(per);
     }
@@ -75,17 +94,7 @@ public class PersonsRest {
 
         per.setPersonsDetailsList(personsDetails);
         personsService.merge(per);
-//        personsDto.setId(per.getPersonsId());
-//        personsDto.setName(per.getName());
-//        List<PersonsDetails> personsDetailsList = per.getPersonsDetailsList();
-//        List<PersonsDetailsDto> personsDetailsDtos = new ArrayList<>();
-//        for (PersonsDetails personsDetails : personsDetailsList) {
-//            PersonsDetailsDto personsDetailsDto = new PersonsDetailsDto();
-//            personsDetailsDto.setAddress(personsDetails.getAddress());
-//            personsDetailsDtos.add(personsDetailsDto);
-//        }
-//        personsDto.setPersonsDetailsDtos(personsDetailsDtos);
-//
+
         return Response.ok().entity(personsDto).build();
     }
 
