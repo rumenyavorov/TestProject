@@ -1,6 +1,9 @@
 package tests.domain;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,7 +23,8 @@ public class Persons {
     @JoinColumn(name = "persons_id")
     private List<PersonsDetails> personsDetailsList;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinColumn(name = "persons_id")
     private List<PersonsRoles> personsRolesList;
 

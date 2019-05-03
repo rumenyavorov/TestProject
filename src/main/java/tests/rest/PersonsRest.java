@@ -71,7 +71,7 @@ public class PersonsRest {
 
         for(PersonsRolesDto rolesDto : personsDto.getPersonsRolesDtos()){
             PersonsRoles perR = new PersonsRoles();
-            perR.setPersonRoleId(rolesDto.getPersonRoleId());
+            perR.setPersonRole(rolesDto.getPersonRoleId());
             roles.add(perR);
             per.setPersonsRolesList(roles);
         }

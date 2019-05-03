@@ -10,6 +10,9 @@ public class PersonsRoles {
     @Column(name = "person_role_id")
     private Long personRoleId;
 
+    @Column(name = "person_role")
+    private Long personRole;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "persons_id")
     private Persons persons;
@@ -28,5 +31,13 @@ public class PersonsRoles {
 
     public void setPersons(Persons persons) {
         this.persons = persons;
+    }
+
+    public Long getPersonRole() {
+        return personRole;
+    }
+
+    public void setPersonRole(Long personRole) {
+        this.personRole = personRole;
     }
 }
